@@ -2,6 +2,7 @@ const express = require("express");
 const mysql = require("mysql");
 const fs = require("fs");
 const csv = require("csv-parser");
+const cors = require("cors");
 
 // Create a MySQL connection
 const connection = mysql.createConnection({
@@ -25,6 +26,7 @@ const app = express();
 
 // Middleware to parse JSON bodies
 app.use(express.json());
+app.use(cors());
 
 // Start the Express server
 const PORT = process.env.PORT || 3000;
