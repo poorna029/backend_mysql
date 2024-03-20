@@ -35,18 +35,18 @@ app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
 
-app.get("/", (req, res) => {
-  const get_qry = "select * from businessquant_info;";
-  connection.query(get_qry, (err, results) => {
-    if (err) {
-      console.error("Error fetching users:", err);
-      res.status(500);
-      res.send("Error fetching users");
-      return;
-    }
-    res.send(results);
-  });
-});
+// app.get("/", (req, res) => {
+//   const get_qry = "select * from businessquant_info;";
+//   connection.query(get_qry, (err, results) => {
+//     if (err) {
+//       console.error("Error fetching users:", err);
+//       res.status(500);
+//       res.send("Error fetching users");
+//       return;
+//     }
+//     res.send(results);
+//   });
+// });
 
 app.get("/search/", async (req, res) => {
   // Api/ticker=ZS&column=revenue,gp&period=5y
