@@ -57,3 +57,11 @@ app.listen(PORT, () => {
 //     res.send(result);
 //   });
 // });
+
+connection.end((err) => {
+  if (err) {
+    console.error("Error closing connection:", err);
+    return;
+  }
+  console.log("Connection to MySQL closed");
+});
