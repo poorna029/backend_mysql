@@ -38,7 +38,7 @@ app.listen(PORT, () => {
 });
 
 app.get("/", (req, res) => {
-  const get_qry = "select * from users;";
+  const get_qry = "select * from businessquant_info;";
   connection.query(get_qry, (err, results) => {
     if (err) {
       console.error("Error fetching users:", err);
@@ -50,19 +50,19 @@ app.get("/", (req, res) => {
   });
 });
 
-app.post("/insert_users", (req, res) => {
-  const { username, email } = req.query;
-  const qry = `insert into users(username,email) values('${username}','${email}');`;
-  connection.query(qry, (err, results) => {
-    if (err) {
-      console.error("Error fetching users:", err);
-      res.status(500);
-      res.send("Error fetching users");
-      return;
-    }
-    res.send(results);
-  });
-});
+// app.post("/insert_users", (req, res) => {
+//   const { username, email } = req.query;
+//   const qry = `insert into users(username,email) values('${username}','${email}');`;
+//   connection.query(qry, (err, results) => {
+//     if (err) {
+//       console.error("Error fetching users:", err);
+//       res.status(500);
+//       res.send("Error fetching users");
+//       return;
+//     }
+//     res.send(results);
+//   });
+// });
 
 app.get("/search/", async (req, res) => {
   // Api/ticker=ZS&column=revenue,gp&period=5y
