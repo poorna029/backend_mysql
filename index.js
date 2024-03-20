@@ -1,7 +1,5 @@
 const express = require("express");
 const mysql = require("mysql");
-const fs = require("fs");
-const csv = require("csv-parser");
 const cors = require("cors");
 
 // Create a MySQL connection
@@ -50,20 +48,6 @@ app.get("/", (req, res) => {
   });
 });
 
-// app.post("/insert_users", (req, res) => {
-//   const { username, email } = req.query;
-//   const qry = `insert into users(username,email) values('${username}','${email}');`;
-//   connection.query(qry, (err, results) => {
-//     if (err) {
-//       console.error("Error fetching users:", err);
-//       res.status(500);
-//       res.send("Error fetching users");
-//       return;
-//     }
-//     res.send(results);
-//   });
-// });
-
 app.get("/search/", async (req, res) => {
   // Api/ticker=ZS&column=revenue,gp&period=5y
   const { ticker, revenue, gp, period } = req.query;
@@ -87,23 +71,6 @@ app.get("/search/", async (req, res) => {
   });
 });
 
-const exe = async () => {
-  fs.createReadStream("./Sample-Data-Historic.csv")
-    .pipe(csv())
-    .on("data", (data) => {
-      let values = Object.values(data);
-      //   console.log(values[0]);
-      data = { ...data, ticker: values[0] };
-
-      results.push(data);
-    })
-    .on("end", () => {
-      console.log(results.length);
-      // create_rows(results);
-    });
-};
-
-exe();
 let start_time = null;
 let end_time = null;
 
