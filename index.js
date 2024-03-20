@@ -50,14 +50,14 @@ app.get("/search/", async (req, res) => {
   const { ticker, revenue, gp, period } = req.query;
   const periodInYears = period ? period.slice(0, 1) : 0;
 
-  console.log(ticker, revenue, gp, periodInYears);
+  // console.log(ticker, revenue, gp, periodInYears);
 
   const get_search_qry = `select * from businessquant_info where ticker like '${
     ticker || "%%"
   }'and revenue>=${revenue || "revenue"} and gp>=${
     Array.isArray(gp) ? gp[0] : 0
   } and date<=DATE_SUB(NOW(), INTERVAL ${periodInYears} YEAR);`;
-  console.log(get_search_qry, "poorna search qry is printing");
+  // console.log(get_search_qry, "poorna search qry is printing");
   connection.getConnection((err, connection) => {
     if (err) {
       console.error("Error getting connection:", err);
